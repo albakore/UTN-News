@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import ListNews from './components/ListNews';
 import './App.css';
 
