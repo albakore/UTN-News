@@ -3,6 +3,7 @@ import NewsCards from "./NewsCard";
 import FilterNews from "./FilterNews";
 
 import { useState, useEffect } from "react";
+import shortid from "shortid";
 
 function ListNews() {
   const [articles, setarticles] = useState([]);
@@ -39,16 +40,17 @@ function ListNews() {
   };
 
   return (
-    <div>
+    <div className="mt-1">
+      <h1>News</h1>
       <FilterNews
         pageSize={pageSize}
         setPageSize={setPageSize}
         categories={categories}
         setCategory={setCategory}
       />
-      <ul>
+      <ul className="mt-2 list-group">
         {articles.map((article) => (
-          <li>
+          <li key={shortid.generate()} className="list-item">
             <NewsCards article={article} />
           </li>
         ))}
