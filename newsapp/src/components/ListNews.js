@@ -30,8 +30,9 @@ function ListNews() {
 
   const checkNews = async () => {
     const url = `
-          https://newsapi.org/v2/top-headlines?country=us&category=${category}&pageSize=${pageSize}&country=${country}&apiKey=15b2cebfe360495d9c4f1ae4925c6af6
+          https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&pageSize=${pageSize}&apiKey=15b2cebfe360495d9c4f1ae4925c6af6
         `;
+    console.log(url);
     const response = await fetch(url);
     const news = await response.json();
     setarticles(news.articles);

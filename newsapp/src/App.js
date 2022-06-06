@@ -1,3 +1,4 @@
+import React  from "react";
 import ListNews from './components/ListNews';
 import './App.css';
 
