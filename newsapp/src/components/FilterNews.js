@@ -1,29 +1,30 @@
 import React from "react";
 import shortid from "shortid";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Input, FormGroup, Label } from "reactstrap";
 
 function FilterNews({ pageSize, setPageSize, categories, setCategory }) {
   return (
     <div>
-      <Form className="mt-1">
-        <Form.Group className="mb-3" controlId="formGroupCounter">
-          <Form.Label htmlFor="inputPassword5">
+      <Form className="m-1" >
+        <FormGroup className="mb-3" controlId="formGroupCounter">
+          <Label for="InputPassword5" >
             Cantidad de Resultados
-          </Form.Label>
+          </Label>
 
-          <Form.Control
+          <Input
             type="number"
-            id="inputPassword5"
+            id="InputPassword5"
             value={pageSize}
             onChange={(ev) => {
               setPageSize(ev.target.value);
             }}
           />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formGroupSelect">
-          <Form.Label htmlFor="formGroupSelect">Categorías</Form.Label>
+        </FormGroup>
+        <FormGroup className="mb-3" controlId="formGroupSelect">
+          <Label for="formGroupSelect">Categorías</Label>
 
-          <Form.Select
+          <Input
+            type="select"
             className="list-group"
             onChange={(ev) => {
               setCategory(ev.target.value);
@@ -41,8 +42,8 @@ function FilterNews({ pageSize, setPageSize, categories, setCategory }) {
                 {item}
               </option>
             ))}
-          </Form.Select>
-        </Form.Group>
+          </Input>
+        </FormGroup>
       </Form>
     </div>
   );
