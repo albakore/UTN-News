@@ -4,9 +4,9 @@ import { Button, Form, Input, FormGroup, Label } from "reactstrap";
 
 function FilterNews({ pageSize, setPageSize, categories, setCategory , category }) {
   return (
-    <div>
+    <div  style={{ marginLeft: "25rem" }}>
       <Form className="m-1" >
-        <FormGroup className="mb-3" controlId="formGroupCounter">
+        <FormGroup className="mb-3" controlid="formGroupCounter">
           <Label for="InputPassword5" >
             Cantidad de Resultados
           </Label>
@@ -20,7 +20,7 @@ function FilterNews({ pageSize, setPageSize, categories, setCategory , category 
             }}
           />
         </FormGroup>
-        <FormGroup className="mb-3" controlId="formGroupSelect">
+        <FormGroup className="mb-3" controlid="formGroupSelect">
           <Label for="formGroupSelect">Categorías</Label>
 
           <Input

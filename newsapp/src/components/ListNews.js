@@ -1,25 +1,12 @@
 import React from "react";
 import NewsCards from "./NewsCard";
-import FilterNews from "./FilterNews";
+
 import { useState, useEffect } from "react";
 import shortid from "shortid";
 
-
-function ListNews() {
+function ListNews({country,category, pageSize }) {
   const [articles, setarticles] = useState([]);
-  const [category, setCategory] = useState("general");
-  const [pageSize, setPageSize] = useState(20);
-  const [countries, setCountries] = useState(["ar", "us", "en"]);
-  const [country, setCountry] = useState("ar");
-  const [categories, setCategories] = useState([
-    "business",
-    "entertainment",
-    "general",
-    "health",
-    "science",
-    "sports",
-    "technology",
-  ]);
+
 
   useEffect(() => {
     checkNews(category);
@@ -41,19 +28,11 @@ function ListNews() {
 
   return (
     <div className="mt-1">
-      <FilterNews
-        pageSize={pageSize}
-        setPageSize={setPageSize}
-        categories={categories}
-        setCategory={setCategory}
-        category={category}
-      />
       <div>
         {articles.map((article) => (
-            <NewsCards key={shortid.generate()} article={article} />
+          <NewsCards key={shortid.generate()} article={article} />
         ))}
       </div>
-      
     </div>
   );
 }
