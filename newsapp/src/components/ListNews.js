@@ -47,6 +47,7 @@ function ListNews() {
         setPageSize={setPageSize}
         categories={categories}
         setCategory={setCategory}
+        category={category}
       />
       <ul className="mt-2 list-group">
         {articles.map((article) => (

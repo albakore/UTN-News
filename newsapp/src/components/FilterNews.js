@@ -2,10 +2,10 @@ import React from "react";
 import shortid from "shortid";
 import { Button, Form } from "react-bootstrap";
 
-function FilterNews({ pageSize, setPageSize, categories, setCategory }) {
+function FilterNews({ pageSize, setPageSize, categories, setCategory , category }) {
   return (
-    <div>
-      <Form className="mt-1">
+    <div className="container">
+      <Form className="form1" size={"lg"}>
         <Form.Group className="mb-3" controlId="formGroupCounter">
           <Form.Label htmlFor="inputPassword5">
             Cantidad de Resultados
@@ -43,6 +43,7 @@ function FilterNews({ pageSize, setPageSize, categories, setCategory }) {
             ))}
           </Form.Select>
         </Form.Group>
+        <Form.Label htmlFor="formGroupSelect"><strong>{`Categoría: ${category}`}</strong></Form.Label>
       </Form>
     </div>
   );
