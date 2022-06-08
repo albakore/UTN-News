@@ -1,35 +1,31 @@
 import React from "react";
-
+import { Card, CardBody, CardTitle, CardSubtitle, CardImg, Button } from "reactstrap";
 function NewsCard({ article }) {
   /* destructuring */
   const { urlToImage, title, url, description, source } = article;
   //Looad img if is available
   const image = urlToImage ? (
-    <div className="card-image-top w-25" >
-      <img src={urlToImage} alt={title} />
-      <span className="card-title">{source.name}</span>
-    </div>
+      <img className="img-fluid rounded mx-auto"  src={urlToImage} alt={title} width="500" height="600" />
   ) : <></>;
   return (
-    <div className="card">
-      <div className="d-flex flex-column col s12 m6 l4">
-        <figure className="figure-img">{image}</figure>
-        <div className="card-content">
-          <h3>{title}</h3>
-          <p>{description}</p>
-        </div>
-        <div className="card-action">
-          <a
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="waves-effect waver-light btn blue-grey darken-3"
-          >
-            See complete
-          </a>
-        </div>
-      </div>
+    <div>
+    <Card color="dark" inverse className="m-1">
+      <CardBody>
+        <CardImg src={urlToImage} width="100%"/>
+        <CardTitle tag="h5">
+          {title}
+        </CardTitle>
+        <CardSubtitle className="mb-2 text-muted" tag="h6">
+          {description}
+        </CardSubtitle>
+        
+        <Button href={url} target="_blank">
+          Ver completo
+        </Button>
+      </CardBody>
+    </Card>
     </div>
+    
   );
 }
 
