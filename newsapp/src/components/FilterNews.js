@@ -2,7 +2,7 @@ import React from "react";
 import shortid from "shortid";
 import { Button, Form, Input, FormGroup, Label } from "reactstrap";
 
-function FilterNews({ pageSize, setPageSize, categories, setCategory }) {
+function FilterNews({ pageSize, setPageSize, categories, setCategory , category }) {
   return (
     <div>
       <Form className="m-1" >

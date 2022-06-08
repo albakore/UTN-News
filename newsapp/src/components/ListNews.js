@@ -46,6 +46,7 @@ function ListNews() {
         setPageSize={setPageSize}
         categories={categories}
         setCategory={setCategory}
+        category={category}
       />
       <div>
         {articles.map((article) => (
