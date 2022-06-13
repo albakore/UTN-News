@@ -2,10 +2,16 @@ import React, { useState, useEffect } from "react";
 
 import ListNews from "./components/ListNews";
 import FilterNews from "./components/FilterNews";
+import Login from "./components/Login";
 import "./App.css";
 import { Offcanvas, OffcanvasBody, OffcanvasHeader, Button } from "reactstrap";
 
+
 function App() {
+  const [creds, setcreds] = useState(null);
+  if( creds === null){
+    return <Login setcreds={setcreds} />
+  }
   const [offcanvas, setoffcanvas] = useState(true);
 
   const [category, setCategory] = useState("general");
@@ -38,7 +44,7 @@ function App() {
       >
         <OffcanvasHeader toggle={mostrar}>Noticias</OffcanvasHeader>
         <OffcanvasBody>
-          <ListNews country={country} category={category} pageSize={pageSize} />
+          <ListNews country={country} category={category} pageSize={pageSize} creds={creds}/>
         </OffcanvasBody>
       </Offcanvas>
     );
@@ -57,6 +63,7 @@ function App() {
           categories={categories}
           setCategory={setCategory}
           category={category}
+          creds={creds}
         />
         <div id="id-main"></div>
         <MyCanvas className="mt-4" />
