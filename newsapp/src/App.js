@@ -3,7 +3,12 @@ import BarraNav from "./components/BarraNav";
 import ListNews from "./components/ListNews";
 import FilterNews from "./components/FilterNews";
 import "./App.css";
-import { Offcanvas, OffcanvasBody, OffcanvasHeader, Button,ButtonGroup } from "reactstrap";
+import 
+{ Offcanvas, 
+  OffcanvasBody, 
+  OffcanvasHeader, 
+  Button,
+  ButtonGroup} from "reactstrap";
 
 function App() {
   const [offcanvas, setoffcanvas] = useState(true);

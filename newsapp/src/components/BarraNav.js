@@ -17,7 +17,7 @@ import {
 
 export default function BarraNav() {
   const [navToggler, setnavToggler] = useState(false);
-
+  const [loggeado, setLoggeado] = useState(false);
   const mostrar = () => setnavToggler(!navToggler);
 
   return (
@@ -25,7 +25,7 @@ export default function BarraNav() {
       <Navbar color="dark" dark expand="md" light>
         <NavbarBrand href="/">UTN News</NavbarBrand>
         <NavbarToggler onClick={mostrar} />
-        <Collapse navbar isOpen={navToggler}>
+        <Collapse navbar isOpen={navToggler} logged="">
           <Nav className="me-auto" navbar>
             <NavItem>
               <NavLink href="/inicio/">Inicio</NavLink>
@@ -40,32 +40,36 @@ export default function BarraNav() {
               <DropdownMenu right>
                 <DropdownItem>Option 1</DropdownItem>
                 <DropdownItem>Option 2</DropdownItem>
-                
+
                 <DropdownItem>Reset</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
-          <InicioSesion />
+          {loggeado ? <Button color="primary">Crear Noticia</Button> : <></>}
+
+          <InicioSesion loggeado={setLoggeado} />
         </Collapse>
       </Navbar>
     </div>
   );
 }
 
-function InicioSesion() {
+function InicioSesion({ loggeado }) {
   const [sesionIniciada, setSesionIniciada] = useState(false);
-  const toggleSesion = () => setSesionIniciada(!sesionIniciada);
+  const toggleSesion = () => {
+    setSesionIniciada(!sesionIniciada);
+    loggeado(!sesionIniciada);
+  };
   const [dropDownSesion, setdropDownSesion] = useState(false);
   const toggleDropDown = () => setdropDownSesion(!dropDownSesion);
   return (
     <div>
       {sesionIniciada ? (
-          <div>
-          
+        <div>
           <Dropdown toggle={toggleDropDown} isOpen={dropDownSesion}>
             <DropdownToggle caret>Kevin Kener</DropdownToggle>
             <DropdownMenu>
-              <DropdownItem onClick={toggleSesion}>
+              <DropdownItem>
                 <b>Perfil</b>
               </DropdownItem>
               <DropdownItem divider />
@@ -75,7 +79,6 @@ function InicioSesion() {
             </DropdownMenu>
           </Dropdown>
         </div>
-        
       ) : (
         <Button onClick={toggleSesion}>Inicia Sesion</Button>
       )}
