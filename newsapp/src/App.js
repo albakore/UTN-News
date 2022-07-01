@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-
+import BarraNav from "./components/BarraNav";
 import ListNews from "./components/ListNews";
 import FilterNews from "./components/FilterNews";
 import "./App.css";
-import { Offcanvas, OffcanvasBody, OffcanvasHeader, Button } from "reactstrap";
+import { Offcanvas, OffcanvasBody, OffcanvasHeader, Button,ButtonGroup } from "reactstrap";
 
 function App() {
   const [offcanvas, setoffcanvas] = useState(true);
@@ -46,7 +46,7 @@ function App() {
 
   return (
     <div className="App">
-      <Button color="primary" onClick={mostrar}>
+      {/* <Button color="primary" onClick={mostrar}>
         Open
       </Button>
       <div className="container">
@@ -60,7 +60,19 @@ function App() {
         />
         <div id="id-main"></div>
         <MyCanvas className="mt-4" />
-      </div>
+      </div> */}
+      <BarraNav/>
+      <ButtonGroup>
+        <Button color="primary" >
+          One
+        </Button>
+        <Button color="primary" >
+          Two
+        </Button>
+        <Button color="primary" >
+          Three
+        </Button>
+      </ButtonGroup>
     </div>
   );
 }
