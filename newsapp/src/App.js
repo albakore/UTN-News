@@ -3,6 +3,11 @@ import BarraNav from "./components/BarraNav";
 import ListNews from "./components/ListNews";
 import FilterNews from "./components/FilterNews";
 import "./App.css";
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
 import 
 { Offcanvas, 
   OffcanvasBody, 
@@ -78,6 +83,11 @@ function App() {
           Three
         </Button>
       </ButtonGroup>
+      <Routes>
+        <Route exact path="/" component={ListNews} />
+      </Routes>
+          
+
     </div>
   );
 }
