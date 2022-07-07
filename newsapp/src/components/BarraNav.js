@@ -132,6 +132,7 @@ function VentanaLogin({ modal, visible }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrores(validacion(entradas));
+    setIsSubmit(true);
   };
 
   useEffect(() => {
@@ -144,15 +145,22 @@ function VentanaLogin({ modal, visible }) {
   const validacion = (valores) => {
     const errores = { email: "", password: "" };
     const regex = new RegExp("^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$");
+    const regexPassword = new RegExp("(?=.*?[a-zA-Z0-9._:$!%-]{8,})");
     if (!valores.email) {
       errores.email = "El email es requerido!";
     }
-    if (regex.test(valores.email)) {
+    else if (!regex.test(valores.email)) {
         errores.email = "La informacion no corresponde a un mail valido.";
+        
       }
     if (!valores.password) {
       errores.password = "La contraseña es requerida!";
     }
+
+    else if (!regexPassword.test(valores.password)) {
+      errores.password = "La contraseña debe contener 8 caracteres como minimo";
+    }
+    
     return errores;
   };
 
@@ -160,7 +168,7 @@ function VentanaLogin({ modal, visible }) {
     <Modal isOpen="true">
       <ModalHeader toggle={() => modal(false)}>Iniciar Sesion</ModalHeader>
       <ModalBody>
-        <pre>{JSON.stringify(entradas, undefined, 2)}</pre>
+        {/* <pre>{JSON.stringify(entradas, undefined, 2)}</pre> */}
         <Form>
           <FormGroup>
             <Label htmlFor="exampleEmail">Email</Label>
@@ -171,8 +179,8 @@ function VentanaLogin({ modal, visible }) {
               type="email"
               value={entradas.email}
               onChange={handleEntradas}
-              invalid={formErrores.email.length > 0}
-              valid={!formErrores.email.length > 0}
+              invalid={formErrores.email.length > 0 && isSubmit}
+              valid={!formErrores.email.length > 0 && isSubmit}
             />
             <FormFeedback invalid>{formErrores.email}</FormFeedback>
           </FormGroup>
@@ -185,8 +193,8 @@ function VentanaLogin({ modal, visible }) {
               type="password"
               value={entradas.password}
               onChange={handleEntradas}
-              invalid={formErrores.password.length > 0}
-              valid={!formErrores.password.length > 0}
+              invalid={formErrores.password.length > 0 && isSubmit}
+              valid={!formErrores.password.length > 0  && isSubmit}
             />
             <FormFeedback invalid>{formErrores.password}</FormFeedback>
           </FormGroup>
