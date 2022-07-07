@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {BrowserRouter as Router,Route,Switch,Link} from 'react-router-dom';
 import {
   Nav,
   Navbar,
@@ -30,19 +31,21 @@ export default function BarraNav() {
   const [loggeado, setLoggeado] = useState(false);
   const mostrar = () => setnavToggler(!navToggler);
   const [mostrarModal, setMostrarModal] = useState(false);
+  
 
   return (
     <div>
+    
       <Navbar color="dark" dark expand="md" light>
         <NavbarBrand href="/">UTN News</NavbarBrand>
         <NavbarToggler onClick={mostrar} />
         <Collapse navbar isOpen={navToggler} logged="">
           <Nav className="me-auto" navbar>
             <NavItem>
-              <NavLink href="/inicio/">Inicio</NavLink>
+                <NavLink href="/">Inicio</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/elequipo/">El equipo</NavLink>
+              <NavLink href="/elequipo">El equipo</NavLink>
             </NavItem>
             <UncontrolledDropdown inNavbar nav>
               <DropdownToggle caret nav>
@@ -64,9 +67,9 @@ export default function BarraNav() {
             <></>
           )}
 
-          <InicioSesion loggeado={setLoggeado} modal={setMostrarModal} />
+          <InicioSesion loggeado={setLoggeado} modal={setMostrarModal} login={loggeado} />
           {mostrarModal ? (
-            <VentanaLogin visible={mostrarModal} modal={setMostrarModal} />
+            <VentanaLogin visible={mostrarModal} modal={setMostrarModal} loggeado={setLoggeado}/>
           ) : (
             <></>
           )}
@@ -76,20 +79,20 @@ export default function BarraNav() {
   );
 }
 
-function InicioSesion({ loggeado, modal }) {
-  const [sesionIniciada, setSesionIniciada] = useState(false);
+function InicioSesion({ loggeado, modal,login}) {
+  
 
   const toggleSesion = () => {
-    setSesionIniciada(!sesionIniciada);
+    
 
-    loggeado(!sesionIniciada);
+    loggeado(!login);
   };
 
   const [dropDownSesion, setdropDownSesion] = useState(false);
   const toggleDropDown = () => setdropDownSesion(!dropDownSesion);
   return (
     <div>
-      {sesionIniciada ? (
+      {login ? (
         <div>
           <Dropdown toggle={toggleDropDown} isOpen={dropDownSesion}>
             <DropdownToggle caret>Kevin Kener</DropdownToggle>
@@ -118,8 +121,8 @@ function InicioSesion({ loggeado, modal }) {
   );
 }
 
-function VentanaLogin({ modal, visible }) {
-  const usuario = { email: "kevin", password: "1234" };
+function VentanaLogin({ modal, visible, loggeado }) {
+  const usuario = { email: "kevink.contacto@gmail.com", password: "12345678" };
   const [entradas, setEntradas] = useState({ email: "", password: "" });
   const [formErrores, setFormErrores] = useState({ ...entradas });
   const [isSubmit, setIsSubmit] = useState(false);
@@ -135,11 +138,11 @@ function VentanaLogin({ modal, visible }) {
     setIsSubmit(true);
   };
 
-  useEffect(() => {
-    if (Object.keys(formErrores).length === 0) {
-      console.log(formErrores);
-    }
-  }, [formErrores]);
+  // useEffect(() => {
+  //   if (Object.keys(formErrores).length > 0) {
+  //     console.log(formErrores);
+  //   }
+  // }, [formErrores]);
 
 
   const validacion = (valores) => {
@@ -161,6 +164,11 @@ function VentanaLogin({ modal, visible }) {
       errores.password = "La contraseña debe contener 8 caracteres como minimo";
     }
     
+    if (JSON.stringify(usuario) === JSON.stringify(entradas)){
+      console.log("logeado");
+      loggeado(true);
+      modal(false);
+    }
     return errores;
   };
 

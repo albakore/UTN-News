@@ -4,16 +4,19 @@ import ListNews from "./components/ListNews";
 import FilterNews from "./components/FilterNews";
 import "./App.css";
 import {
-  BrowserRouter,
+  BrowserRouter as Router,
   Routes,
-  Route
+  Route,
+  Switch,
+  Link,
 } from "react-router-dom";
-import 
-{ Offcanvas, 
-  OffcanvasBody, 
-  OffcanvasHeader, 
+import {
+  Offcanvas,
+  OffcanvasBody,
+  OffcanvasHeader,
   Button,
-  ButtonGroup} from "reactstrap";
+  ButtonGroup,
+} from "reactstrap";
 
 function App() {
   const [offcanvas, setoffcanvas] = useState(true);
@@ -71,23 +74,19 @@ function App() {
         <div id="id-main"></div>
         <MyCanvas className="mt-4" />
       </div> */}
-      <BarraNav/>
-      <ButtonGroup>
-        <Button color="primary" >
-          One
-        </Button>
-        <Button color="primary" >
-          Two
-        </Button>
-        <Button color="primary" >
-          Three
-        </Button>
-      </ButtonGroup>
-      <Routes>
-        <Route exact path="/" component={ListNews} />
-      </Routes>
-          
 
+      <BarraNav />
+      <ButtonGroup>
+        {categories.map((dato) => {
+          return <Button color="primary">{dato}</Button>;
+        })}
+      </ButtonGroup>
+      {/* <Switch>
+          <Route exact path="/">
+            <ListNews />
+          </Route>
+        </Switch>
+      */}
     </div>
   );
 }
