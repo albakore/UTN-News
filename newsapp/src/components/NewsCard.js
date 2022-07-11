@@ -11,6 +11,7 @@ import {
 function NewsCard({ article }) {
   /* destructuring */
   const { urlToImage, title, url, description, source } = article;
+  const [cliked, setCLiked] = useState(false);  // conteo de clicks
   //Looad img if is available
   const image = urlToImage ? (
     <img
@@ -43,6 +44,7 @@ function NewsCard({ article }) {
           <Button
             onClick={(ev) => {
               onClickFullView(url);
+              setCLiked(cliked = true); // marca el click
             }}
           >
             Ver completo
