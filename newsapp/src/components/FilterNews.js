@@ -4,7 +4,7 @@ import { Button, Form, Input, FormGroup, Label } from "reactstrap";
 
 function FilterNews({ pageSize, setPageSize, categories, setCategory , category }) {
   return (
-    <div  style={{ marginLeft: "25rem" }}>
+    <div>
       <Form className="m-1" >
         <FormGroup className="mb-3" controlid="formGroupCounter">
           <Label for="InputPassword5" >

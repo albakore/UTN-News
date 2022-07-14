@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
+import {BsChevronDoubleUp} from 'react-icons/bs'
 import BarraNav from "./components/BarraNav";
 import ListNews from "./components/ListNews";
 import FilterNews from "./components/FilterNews";
+import ScrollToTop from "react-scroll-up";
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Switch,
-  Link,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Switch, Link } from "react-router-dom";
 import {
   Offcanvas,
   OffcanvasBody,
@@ -59,21 +55,7 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Button color="primary" onClick={mostrar}>
-        Open
-      </Button>
-      <div className="container">
-        <FilterNews
-          className="h-25 w-25 mr-4"
-          pageSize={pageSize}
-          setPageSize={setPageSize}
-          categories={categories}
-          setCategory={setCategory}
-          category={category}
-        />
-        <div id="id-main"></div>
-        <MyCanvas className="mt-4" />
-      </div> */}
+      
 
       <BarraNav />
       <ButtonGroup>
@@ -81,12 +63,28 @@ function App() {
           return <Button color="primary">{dato}</Button>;
         })}
       </ButtonGroup>
-      {/* <Switch>
-          <Route exact path="/">
-            <ListNews />
-          </Route>
-        </Switch>
-      */}
+      
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<div>Hola Perro</div>} />
+        </Routes>
+      </BrowserRouter>
+      <div className="container">
+        <FilterNews
+          pageSize={pageSize}
+          setPageSize={setPageSize}
+          categories={categories}
+          setCategory={setCategory}
+          category={category}
+        />
+        <div id="id-main"></div>
+        <ListNews country={country} category={category} pageSize={pageSize} />
+      </div>
+      <ScrollToTop showUnder={160} >
+        <Button className="align-center"  Style="border-radius:100%;" color="light">
+        <BsChevronDoubleUp/>
+        </Button>
+      </ScrollToTop>
     </div>
   );
 }

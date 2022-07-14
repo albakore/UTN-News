@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import {Button} from "reactstrap";
+import {Button,IconBase} from "reactstrap";
 import { BsFillHandThumbsUpFill } from "react-icons/bs"; // Falta el npm install react-icons --save
-
 function LikeButton (){
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(null);
     const [liked, setLiked] = useState(false);
     return (
         <Button
-        icon={ BsFillHandThumbsUpFill }
+        className='m-1'
         color="primary"
         onClick={(ev) => {
           if (liked === true){
@@ -18,7 +17,8 @@ function LikeButton (){
           setLiked(liked = true);
         }}
       >
-        { count } Me gusta
+        
+        { count } <BsFillHandThumbsUpFill/>
       </Button>
     );
 }

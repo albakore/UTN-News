@@ -36,7 +36,7 @@ export default function BarraNav() {
   return (
     <div>
     
-      <Navbar color="dark" dark expand="md" light>
+      <Navbar color="dark" dark fixed="top" expand="md" light>
         <NavbarBrand href="/">UTN News</NavbarBrand>
         <NavbarToggler onClick={mostrar} />
         <Collapse navbar isOpen={navToggler} logged="">
