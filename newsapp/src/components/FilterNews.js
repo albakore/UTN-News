@@ -8,7 +8,7 @@ function FilterNews({ pageSize, setPageSize, categories, setCategory , category 
       <Form className="m-1" >
         <FormGroup className="mb-3" controlid="formGroupCounter">
           <Label for="InputPassword5" >
-            Cantidad de Resultados
+            Cantidad
           </Label>
 
           <Input

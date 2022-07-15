@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 function NewsCard({ article }) {
   /* destructuring */
-  const { urlToImage, title, url, description, source } = article;
+  const { urlToImage, title, url, description, content } = article;
   const [cliked, setCLiked] = useState(false); // conteo de clicks
   //Looad img if is available
   const image = urlToImage ? (

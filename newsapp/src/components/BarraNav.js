@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import {BrowserRouter as Router,Route,Switch,Link} from 'react-router-dom';
+import FilterNews from "./FilterNews";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import {
   Nav,
   Navbar,
@@ -26,34 +27,36 @@ import {
   FormFeedback,
 } from "reactstrap";
 
-export default function BarraNav() {
+export default function BarraNav({ pageSize, setPageSize, categories, setCategory , category }) {
   const [navToggler, setnavToggler] = useState(false);
   const [loggeado, setLoggeado] = useState(false);
   const mostrar = () => setnavToggler(!navToggler);
   const [mostrarModal, setMostrarModal] = useState(false);
-  
+
 
   return (
     <div>
-    
       <Navbar color="dark" dark fixed="top" expand="md" light>
         <NavbarBrand href="/">UTN News</NavbarBrand>
         <NavbarToggler onClick={mostrar} />
         <Collapse navbar isOpen={navToggler} logged="">
           <Nav className="me-auto" navbar>
+          <NavLink to="/">Inicio</NavLink>
             <NavItem>
-                <NavLink href="/">Inicio</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/elequipo">El equipo</NavLink>
+              <NavLink to="/elequipo">El equipo</NavLink>
             </NavItem>
             <UncontrolledDropdown inNavbar nav>
               <DropdownToggle caret nav>
                 Options
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem>Option 1</DropdownItem>
-                <DropdownItem>Option 2</DropdownItem>
+                <FilterNews
+                  pageSize={pageSize}
+                  setPageSize={setPageSize}
+                  categories={categories}
+                  setCategory={setCategory}
+                  category={category}
+                />
 
                 <DropdownItem>Reset</DropdownItem>
               </DropdownMenu>
@@ -67,9 +70,17 @@ export default function BarraNav() {
             <></>
           )}
 
-          <InicioSesion loggeado={setLoggeado} modal={setMostrarModal} login={loggeado} />
+          <InicioSesion
+            loggeado={setLoggeado}
+            modal={setMostrarModal}
+            login={loggeado}
+          />
           {mostrarModal ? (
-            <VentanaLogin visible={mostrarModal} modal={setMostrarModal} loggeado={setLoggeado}/>
+            <VentanaLogin
+              visible={mostrarModal}
+              modal={setMostrarModal}
+              loggeado={setLoggeado}
+            />
           ) : (
             <></>
           )}
@@ -79,12 +90,8 @@ export default function BarraNav() {
   );
 }
 
-function InicioSesion({ loggeado, modal,login}) {
-  
-
+function InicioSesion({ loggeado, modal, login }) {
   const toggleSesion = () => {
-    
-
     loggeado(!login);
   };
 
@@ -144,27 +151,22 @@ function VentanaLogin({ modal, visible, loggeado }) {
   //   }
   // }, [formErrores]);
 
-
   const validacion = (valores) => {
     const errores = { email: "", password: "" };
     const regex = new RegExp("^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$");
     const regexPassword = new RegExp("(?=.*?[a-zA-Z0-9._:$!%-]{8,})");
     if (!valores.email) {
       errores.email = "El email es requerido!";
+    } else if (!regex.test(valores.email)) {
+      errores.email = "La informacion no corresponde a un mail valido.";
     }
-    else if (!regex.test(valores.email)) {
-        errores.email = "La informacion no corresponde a un mail valido.";
-        
-      }
     if (!valores.password) {
       errores.password = "La contraseña es requerida!";
-    }
-
-    else if (!regexPassword.test(valores.password)) {
+    } else if (!regexPassword.test(valores.password)) {
       errores.password = "La contraseña debe contener 8 caracteres como minimo";
     }
-    
-    if (JSON.stringify(usuario) === JSON.stringify(entradas)){
+
+    if (JSON.stringify(usuario) === JSON.stringify(entradas)) {
       console.log("logeado");
       loggeado(true);
       modal(false);
@@ -202,7 +204,7 @@ function VentanaLogin({ modal, visible, loggeado }) {
               value={entradas.password}
               onChange={handleEntradas}
               invalid={formErrores.password.length > 0 && isSubmit}
-              valid={!formErrores.password.length > 0  && isSubmit}
+              valid={!formErrores.password.length > 0 && isSubmit}
             />
             <FormFeedback invalid>{formErrores.password}</FormFeedback>
           </FormGroup>

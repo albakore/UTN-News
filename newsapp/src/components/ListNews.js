@@ -14,7 +14,7 @@ function ListNews({country,category, pageSize }) {
 
   useEffect(() => {
     checkNews(category);
-  }, [category, country]);
+  }, [pageSize,category, country]);
 
   const checkNews = async () => {
     const url = `
@@ -24,6 +24,7 @@ function ListNews({country,category, pageSize }) {
     const response = await fetch(url);
     const news = await response.json();
     setarticles(news.articles);
+    console.log(articles);
   };
 
   return (

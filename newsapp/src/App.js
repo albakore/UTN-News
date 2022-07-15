@@ -57,7 +57,11 @@ function App() {
     <div className="App">
       
 
-      <BarraNav />
+      <BarraNav  pageSize={pageSize}
+                  setPageSize={setPageSize}
+                  categories={categories}
+                  setCategory={setCategory}
+                  category={category}/>
       <ButtonGroup>
         {categories.map((dato) => {
           return <Button color="primary">{dato}</Button>;
@@ -70,13 +74,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       <div className="container">
-        <FilterNews
-          pageSize={pageSize}
-          setPageSize={setPageSize}
-          categories={categories}
-          setCategory={setCategory}
-          category={category}
-        />
+        
         <div id="id-main"></div>
         <ListNews country={country} category={category} pageSize={pageSize} />
       </div>
