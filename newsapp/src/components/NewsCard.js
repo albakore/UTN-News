@@ -29,17 +29,14 @@ function NewsCard({ article }) {
   );
 
   const onClickFullView = (url) => {
-    ReactDOM.render(
-      <iframe src={url} width="540" height="450" />,
-      document.getElementById("id-main")
-    );
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
   return (
     <div Style="text-align:left;">
       <Card color="dark" inverse className="m-1">
         <CardBody>
           <Row xs="8">
-            <Col xs="4">
+            <Col xs="3">
               <CardImg src={urlToImage} width="100%" />
             </Col>
             <Col>
