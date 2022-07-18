@@ -3,7 +3,7 @@ const {Pool} = require('pg')
 const config = {
       host: 'localhost',
       user: 'postgres',
-      password: 'Mohicano22!',
+      password: 'admin',
       database: 'newsApp',
       port: 5432
   };
